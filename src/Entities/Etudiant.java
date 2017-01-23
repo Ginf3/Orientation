@@ -1,9 +1,6 @@
 package Entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by ismailrei on 1/23/17.
@@ -155,5 +152,16 @@ public class Etudiant {
         result = 31 * result + classement;
         result = 31 * result + (choix != null ? choix.hashCode() : 0);
         return result;
+    }
+
+    private Filiere filiere;
+
+    @ManyToOne
+    public Filiere getFiliere() {
+        return filiere;
+    }
+
+    public void setFiliere(Filiere filiere) {
+        this.filiere = filiere;
     }
 }
