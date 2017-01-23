@@ -8,15 +8,13 @@ import javax.persistence.*;
 @Entity
 public class Etudiant {
     private String cne;
-    private String login;
-    private String password;
-    private int email;
-    private byte admin;
     private String nom;
     private String prenom;
     private int note;
     private int classement;
     private String choix;
+    private Filiere filiereByAffected;
+    private User userByUserId;
 
     @Id
     @Column(name = "cne")
@@ -26,46 +24,6 @@ public class Etudiant {
 
     public void setCne(String cne) {
         this.cne = cne;
-    }
-
-    @Basic
-    @Column(name = "login")
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    @Basic
-    @Column(name = "password")
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Basic
-    @Column(name = "email")
-    public int getEmail() {
-        return email;
-    }
-
-    public void setEmail(int email) {
-        this.email = email;
-    }
-
-    @Basic
-    @Column(name = "admin")
-    public byte getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(byte admin) {
-        this.admin = admin;
     }
 
     @Basic
@@ -125,13 +83,9 @@ public class Etudiant {
 
         Etudiant etudiant = (Etudiant) o;
 
-        if (email != etudiant.email) return false;
-        if (admin != etudiant.admin) return false;
         if (note != etudiant.note) return false;
         if (classement != etudiant.classement) return false;
         if (cne != null ? !cne.equals(etudiant.cne) : etudiant.cne != null) return false;
-        if (login != null ? !login.equals(etudiant.login) : etudiant.login != null) return false;
-        if (password != null ? !password.equals(etudiant.password) : etudiant.password != null) return false;
         if (nom != null ? !nom.equals(etudiant.nom) : etudiant.nom != null) return false;
         if (prenom != null ? !prenom.equals(etudiant.prenom) : etudiant.prenom != null) return false;
         if (choix != null ? !choix.equals(etudiant.choix) : etudiant.choix != null) return false;
@@ -142,10 +96,6 @@ public class Etudiant {
     @Override
     public int hashCode() {
         int result = cne != null ? cne.hashCode() : 0;
-        result = 31 * result + (login != null ? login.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + email;
-        result = 31 * result + (int) admin;
         result = 31 * result + (nom != null ? nom.hashCode() : 0);
         result = 31 * result + (prenom != null ? prenom.hashCode() : 0);
         result = 31 * result + note;
@@ -154,14 +104,23 @@ public class Etudiant {
         return result;
     }
 
-    private Filiere filiere;
-
     @ManyToOne
-    public Filiere getFiliere() {
-        return filiere;
+    @JoinColumn(name = "affected", referencedColumnName = "id", nullable = false)
+    public Filiere getFiliereByAffected() {
+        return filiereByAffected;
     }
 
-    public void setFiliere(Filiere filiere) {
-        this.filiere = filiere;
+    public void setFiliereByAffected(Filiere filiereByAffected) {
+        this.filiereByAffected = filiereByAffected;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    public User getUserByUserId() {
+        return userByUserId;
+    }
+
+    public void setUserByUserId(User userByUserId) {
+        this.userByUserId = userByUserId;
     }
 }

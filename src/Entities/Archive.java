@@ -11,10 +11,6 @@ import javax.persistence.Id;
 @Entity
 public class Archive {
     private String cne;
-    private String login;
-    private String password;
-    private String email;
-    private byte admin;
     private String nom;
     private String prenom;
     private int note;
@@ -30,46 +26,6 @@ public class Archive {
 
     public void setCne(String cne) {
         this.cne = cne;
-    }
-
-    @Basic
-    @Column(name = "login")
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    @Basic
-    @Column(name = "password")
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Basic
-    @Column(name = "email")
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Basic
-    @Column(name = "admin")
-    public byte getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(byte admin) {
-        this.admin = admin;
     }
 
     @Basic
@@ -139,13 +95,9 @@ public class Archive {
 
         Archive archive = (Archive) o;
 
-        if (admin != archive.admin) return false;
         if (note != archive.note) return false;
         if (classement != archive.classement) return false;
         if (cne != null ? !cne.equals(archive.cne) : archive.cne != null) return false;
-        if (login != null ? !login.equals(archive.login) : archive.login != null) return false;
-        if (password != null ? !password.equals(archive.password) : archive.password != null) return false;
-        if (email != null ? !email.equals(archive.email) : archive.email != null) return false;
         if (nom != null ? !nom.equals(archive.nom) : archive.nom != null) return false;
         if (prenom != null ? !prenom.equals(archive.prenom) : archive.prenom != null) return false;
         if (affected != null ? !affected.equals(archive.affected) : archive.affected != null) return false;
@@ -157,10 +109,6 @@ public class Archive {
     @Override
     public int hashCode() {
         int result = cne != null ? cne.hashCode() : 0;
-        result = 31 * result + (login != null ? login.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (int) admin;
         result = 31 * result + (nom != null ? nom.hashCode() : 0);
         result = 31 * result + (prenom != null ? prenom.hashCode() : 0);
         result = 31 * result + note;

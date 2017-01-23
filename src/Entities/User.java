@@ -10,20 +10,20 @@ import javax.persistence.Id;
  */
 @Entity
 public class User {
-    private String cne;
+    private int id;
     private String login;
     private String password;
     private String email;
     private byte admin;
 
     @Id
-    @Column(name = "cne")
-    public String getCne() {
-        return cne;
+    @Column(name = "id")
+    public int getId() {
+        return id;
     }
 
-    public void setCne(String cne) {
-        this.cne = cne;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
@@ -73,8 +73,8 @@ public class User {
 
         User user = (User) o;
 
+        if (id != user.id) return false;
         if (admin != user.admin) return false;
-        if (cne != null ? !cne.equals(user.cne) : user.cne != null) return false;
         if (login != null ? !login.equals(user.login) : user.login != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
@@ -84,7 +84,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        int result = cne != null ? cne.hashCode() : 0;
+        int result = id;
         result = 31 * result + (login != null ? login.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
