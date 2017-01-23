@@ -6,6 +6,9 @@
     <session-factory>
         <property name="connection.url">jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11155290</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.username">sql11155290</property>
+        <property name="connection.password">yTKq9qVy85</property>
+        <property name="hibernate.show_sql">true</property>
         <mapping class="Entities.Archive"/>
         <mapping class="Entities.Etudiant"/>
         <mapping class="Entities.Filiere"/>
