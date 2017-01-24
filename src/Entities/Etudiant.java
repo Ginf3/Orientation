@@ -14,7 +14,7 @@ public class Etudiant {
     private int classement;
     private String choix;
     private Filiere filiereByAffected;
-    private User userByUserId;
+    private User user;
 
     @Id
     @Column(name = "cne")
@@ -114,13 +114,14 @@ public class Etudiant {
         this.filiereByAffected = filiereByAffected;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    public User getUserByUserId() {
-        return userByUserId;
+
+
+    @OneToOne
+    public User getUser() {
+        return user;
     }
 
-    public void setUserByUserId(User userByUserId) {
-        this.userByUserId = userByUserId;
+    public void setUser(User user) {
+        this.user = user;
     }
 }
