@@ -1,14 +1,12 @@
 package Entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by ismailrei on 1/23/17.
  */
 @Entity
+@Table( name = "archive")
 public class Archive {
     private String cne;
     private String nom;
@@ -17,7 +15,7 @@ public class Archive {
     private int classement;
     private String affected;
     private String choix;
-
+    private String annee;// add it to database
     @Id
     @Column(name = "cne")
     public String getCne() {
@@ -86,6 +84,16 @@ public class Archive {
 
     public void setChoix(String choix) {
         this.choix = choix;
+    }
+
+    @Basic
+    @Column(name = "annee")
+    public String getAnnee() {
+        return annee;
+    }
+
+    public void setAnnee(String annee) {
+        this.annee = annee;
     }
 
     @Override

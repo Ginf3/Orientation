@@ -1,14 +1,12 @@
 package Entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by ismailrei on 1/23/17.
  */
 @Entity
+@Table( name = "filiere")
 public class Filiere {
     private String id;
     private String nom;

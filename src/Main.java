@@ -1,3 +1,9 @@
+import DAO.ArchiveDAO;
+import DAO.EtudiantDAO;
+import DAO.UserDAO;
+import Entities.Archive;
+import Entities.Etudiant;
+import Entities.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -13,41 +19,37 @@ import java.util.Map;
  * Created by ismailrei on 1/23/17.
  */
 public class Main {
-    private static final SessionFactory ourSessionFactory;
-    private static final ServiceRegistry serviceRegistry;
 
-    static {
-        try {
-            Configuration configuration = new Configuration();
-            configuration.configure();
-
-            serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-            ourSessionFactory = configuration.buildSessionFactory(serviceRegistry);
-        } catch (Throwable ex) {
-            throw new ExceptionInInitializerError(ex);
-        }
-    }
-
-    public static Session getSession() throws HibernateException {
-        return ourSessionFactory.openSession();
-    }
 
     public static void main(final String[] args) throws Exception {
-        final Session session = getSession();
-        try {
+
             System.out.println("querying all the managed entities...");
-            final Map metadataMap = session.getSessionFactory().getAllClassMetadata();
-            for (Object key : metadataMap.keySet()) {
-                final ClassMetadata classMetadata = (ClassMetadata) metadataMap.get(key);
-                final String entityName = classMetadata.getEntityName();
-                final Query query = session.createQuery("from " + entityName);
-                System.out.println("executing: " + query.getQueryString());
-                for (Object o : query.list()) {
-                    System.out.println("  " + o);
-                }
-            }
-        } finally {
-            session.close();
-        }
+//        Etudiant e = new Etudiant();
+//        EtudiantDAO dao = new EtudiantDAO();
+//        UserDAO dao2 = new UserDAO();
+//        User u = new User();
+//
+//        u.setLogin("kka");
+//        dao2.save(u);
+//
+//        e.setCne("1234e");
+//        e.setUser(u);
+//        dao.save(e);
+        ArchiveDAO dao = new ArchiveDAO();
+        Archive a = new Archive();
+        a.setCne("dvfdv");
+        a.setAffected("ff");
+        a.setAnnee("2222");
+        a.setChoix("sssss");
+        a.setClassement(2);
+        a.setNom("dcdc");
+        a.setNote(15);
+        a.setPrenom("sdsd");
+        dao.save(a);
+
+
+        System.out.println("querying all the managed entities...");
+
+
     }
 }

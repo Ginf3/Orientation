@@ -1,14 +1,12 @@
 package Entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by ismailrei on 1/23/17.
  */
 @Entity
+@Table( name = "user")
 public class User {
     private int id;
     private String login;
