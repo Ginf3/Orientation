@@ -13,6 +13,7 @@
         <mapping class="Entities.Etudiant"/>
         <mapping class="Entities.Filiere"/>
         <mapping class="Entities.User"/>
+        <mapping class="Entities.Post"/>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>

@@ -14,7 +14,7 @@ public class Etudiant {
     private int note;
     private int classement;
     private String choix;
-    private Filiere filiereByAffected;
+    private Filiere affected;
     private User user;
 
     @Id
@@ -107,12 +107,12 @@ public class Etudiant {
 
     @ManyToOne
     @JoinColumn(name = "affected", referencedColumnName = "id", nullable = false)
-    public Filiere getFiliereByAffected() {
-        return filiereByAffected;
+    public Filiere getAffected() {
+        return affected;
     }
 
-    public void setFiliereByAffected(Filiere filiereByAffected) {
-        this.filiereByAffected = filiereByAffected;
+    public void setAffected(Filiere affected) {
+        this.affected = affected;
     }
 
 

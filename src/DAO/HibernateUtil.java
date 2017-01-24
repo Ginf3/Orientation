@@ -1,9 +1,6 @@
 package DAO;
 
-import Entities.Archive;
-import Entities.Etudiant;
-import Entities.Filiere;
-import Entities.User;
+import Entities.*;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,6 +22,7 @@ public class HibernateUtil {
             configuration.addAnnotatedClass(Filiere.class);
             configuration.addAnnotatedClass(Etudiant.class);
             configuration.addAnnotatedClass(User.class);
+            configuration.addAnnotatedClass(Post.class);
             configuration.configure();
 
             serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();

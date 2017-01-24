@@ -1,8 +1,10 @@
 import DAO.ArchiveDAO;
 import DAO.EtudiantDAO;
+import DAO.PostDAO;
 import DAO.UserDAO;
 import Entities.Archive;
 import Entities.Etudiant;
+import Entities.Post;
 import Entities.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -35,17 +37,27 @@ public class Main {
 //        e.setCne("1234e");
 //        e.setUser(u);
 //        dao.save(e);
-        ArchiveDAO dao = new ArchiveDAO();
-        Archive a = new Archive();
-        a.setCne("dvfdv");
-        a.setAffected("ff");
-        a.setAnnee("2222");
-        a.setChoix("sssss");
-        a.setClassement(2);
-        a.setNom("dcdc");
-        a.setNote(15);
-        a.setPrenom("sdsd");
-        dao.save(a);
+
+//        ArchiveDAO dao = new ArchiveDAO();
+//        Archive a = new Archive();
+//        a.setCne("dvfdv");
+//        a.setAffected("ff");
+//        a.setAnnee("2222");
+//        a.setChoix("sssss");
+//        a.setClassement(2);
+//        a.setNom("dcdc");
+//        a.setNote(15);
+//        a.setPrenom("sdsd");
+        PostDAO dao = new PostDAO();
+        Post p = new Post();
+//        p.setTitle("hello");
+//        p.setPicture("pic.jpg");
+//        p.setContent("fill me");
+////        dao.save(p);
+        p = dao.getPost(1);
+//        p.setTitle("hello cp2");
+//        dao.save(p);
+        dao.delete( 1 );
 
 
         System.out.println("querying all the managed entities...");
