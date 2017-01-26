@@ -120,7 +120,7 @@ public class EtudiantDAO {
 
                 }
 
-            /* Sorry boy this 'filiere' is full let's try ur luck with ur next choice. */
+            /* Sorry boy this 'filiere' is full let's try ur luck with your next choice. */
             }
         }
     }

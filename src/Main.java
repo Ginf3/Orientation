@@ -58,18 +58,6 @@ public class Main {
 ////        p.setTitle("hello cp2");
 ////        dao.save(p);
 //        dao.delete( 1 );
-
-
-        ArrayList<String> array = new ArrayList<>();
-        array.add("helo");
-        array.add("hello");
-        array.add("hii");
-       for( String a : array ){
-           if( a.equals( "hello")){
-               System.out.println(1);
-           }
-           System.out.println(a);
-       }
     }
 
 }
