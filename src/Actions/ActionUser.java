@@ -18,7 +18,6 @@ public class ActionUser extends ActionSupport implements ModelDriven<User> {
     private User user= new User();
     private UserDAO userDao= new UserDAO();
     private List<User> Listuser= new ArrayList<>();
-
     public User getUser() {
         return user;
     }

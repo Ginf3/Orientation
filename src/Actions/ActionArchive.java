@@ -19,7 +19,6 @@ public class ActionArchive extends ActionSupport implements ModelDriven<Archive>
     private ArchiveDAO ArchDao= new ArchiveDAO();
     private List<Archive> ListArch= new ArrayList<>();
 
-
     public Archive getArch() {
         return Arch;
     }

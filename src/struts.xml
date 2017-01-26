@@ -21,8 +21,6 @@
         <result name="success" type="redirect">listEtd.action</result>
     </action>
 
-
-
         <action name="addU" class="Actions.ActionUser" method="add">
             <result name="success" type="redirect">listuser.action</result>
         </action>

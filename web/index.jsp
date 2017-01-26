@@ -10,7 +10,6 @@
   <head>
     <title>$Title$</title>
   </head>
-
   <body>
   <a href="addE">Les Etudiants</a>
   <a href="">Les Filieres</a>
