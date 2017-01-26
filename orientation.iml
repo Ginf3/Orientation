@@ -40,5 +40,6 @@
     <orderEntry type="library" name="Struts 2-2.3.20.1" level="project" />
     <orderEntry type="library" name="Hibernate 5.2.3-5.2.3" level="project" />
     <orderEntry type="library" name="mysql:mysql-connector-mxj:5.0.12" level="project" />
+    <orderEntry type="library" name="org.apache.tomcat:tomcat-servlet-api:7.0.22" level="project" />
   </component>
 </module>

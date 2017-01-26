@@ -11,6 +11,8 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+  <a href="addE">Les Etudiants</a>
+  <a href="">Les Filieres</a>
+  <a href="listuser">users</a>
   </body>
 </html>

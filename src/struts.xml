@@ -3,6 +3,38 @@
 <!DOCTYPE struts PUBLIC
         "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
         "http://struts.apache.org/dtds/struts-2.3.dtd">
-
 <struts>
+    <package name="default" extends="struts-default">
+    <action name="addE" class="Actions.ActionEtudiant" method="add">
+        <result name="success" type="redirect">listEtd.action</result>
+    </action>
+    <action name="listEtd" class="Actions.ActionEtudiant" method="list">
+        <result name="success"></result>
+    </action>
+    <action name="GetAddEtd" class="Actions.ActionEtudiant" method="list">
+        <result name="success"></result>
+    </action>
+    <action name="editEtd" class="Actions.ActionEtudiant" method="edit">
+        <result name="success"></result>
+    </action>
+    <action name="DeleteEtd" class="Actions.ActionEtudiant" method="delete">
+        <result name="success" type="redirect">listEtd.action</result>
+    </action>
+
+        <action name="addU" class="Actions.ActionUser" method="add">
+            <result name="success" type="redirect">listuser.action</result>
+        </action>
+        <action name="listuser" class="Actions.ActionUser" method="list">
+            <result name="success">WEB-INF/User/index.jsp</result>
+        </action>
+        <action name="GetAdduser" class="Actions.ActionUser" method="list">
+            <result name="success">WEB-INF/User/add.jsp</result>
+        </action>
+        <action name="edituser" class="Actions.ActionUser" method="edit">
+            <result name="success">WEB-INF/User/add.jsp</result>
+        </action>
+        <action name="Deleteuser" class="Actions.ActionUser" method="delete">
+            <result name="success" type="redirect">listEtd.action</result>
+        </action>
+    </package>
 </struts>
