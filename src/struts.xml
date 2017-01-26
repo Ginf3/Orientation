@@ -5,21 +5,21 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
     <package name="default" extends="struts-default">
-    <action name="addE" class="Actions.ActionEtudiant" method="add">
-        <result name="success" type="redirect">listEtd.action</result>
-    </action>
-    <action name="listEtd" class="Actions.ActionEtudiant" method="list">
-        <result name="success"></result>
-    </action>
-    <action name="GetAddEtd" class="Actions.ActionEtudiant" method="list">
-        <result name="success"></result>
-    </action>
-    <action name="editEtd" class="Actions.ActionEtudiant" method="edit">
-        <result name="success"></result>
-    </action>
-    <action name="DeleteEtd" class="Actions.ActionEtudiant" method="delete">
-        <result name="success" type="redirect">listEtd.action</result>
-    </action>
+        <action name="addE" class="Actions.ActionEtudiant" method="add">
+            <result name="success" type="redirect">listEtd.action</result>
+        </action>
+        <action name="listEtd" class="Actions.ActionEtudiant" method="list">
+            <result name="success"></result>
+        </action>
+        <action name="GetAddEtd" class="Actions.ActionEtudiant" method="list">
+            <result name="success"></result>
+        </action>
+        <action name="editEtd" class="Actions.ActionEtudiant" method="edit">
+            <result name="success"></result>
+        </action>
+        <action name="DeleteEtd" class="Actions.ActionEtudiant" method="delete">
+            <result name="success" type="redirect">listEtd.action</result>
+        </action>
 
         <action name="addU" class="Actions.ActionUser" method="add">
             <result name="success" type="redirect">listuser.action</result>
@@ -35,6 +35,29 @@
         </action>
         <action name="Deleteuser" class="Actions.ActionUser" method="delete">
             <result name="success" type="redirect">listEtd.action</result>
+        </action>
+
+        <action name="addOrUpdateFiliere" class="Actions.ActionFiliere" method="add">
+            <result name="input" type="redirect"></result>
+            <result name="success" type="redirect">listFiliere.action</result>
+        </action>
+        <action name="listFiliere" class="Actions.ActionFiliere" method="list">
+            <result name="success" type="stream">
+                <param name="contentType">application/json</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="GetAddFiliere" class="Actions.ActionFiliere" method="list">
+            <result name="success"></result>
+        </action>
+        <action name="editFiliere" class="Actions.ActionFiliere" method="edit">
+            <result name="success" type="stream">
+                <param name="contentType">application/json</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="deleteFiliere" class="Actions.ActionFiliere" method="delete">
+            <result name="success" type="redirect">listFiliere.action</result>
         </action>
     </package>
 </struts>

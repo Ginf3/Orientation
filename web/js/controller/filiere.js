@@ -15,14 +15,21 @@ appFiliere.controller('filiereController', ['$scope', '$http', function ($scope,
 
         });
     };
-
+    $scope.getDataFromServer=refrech();
     refrech();
 
-    $scope.addFiliere = function () {
+    $scope.addorUpdateFiliere = function () {
+        var params = {
+            "id": $scope.filiere.id,
+            "nom": $scope.filiere.nom,
+            "effectif":$scope.filiere.effictif
+        };
+        var data = angular.toJson(params);
         $http({
             method: 'POST',
             url: 'addOrUpdateFiliere',
-            data: $scope.filiere
+            data: "newF=" + data,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function (success) {
             refrech();
         }, function (error) {
@@ -31,34 +38,28 @@ appFiliere.controller('filiereController', ['$scope', '$http', function ($scope,
     }
 
     $scope.deleteFiliere = function (id) {
-        $http.delete('deleteFiliere?id=' + id).success(function (response) {
-            refrech();
-        })
-    }
-
-    $scope.update = function () {
         $http({
-            method: 'PUT',
-            url: 'addOrUpdateFiliere',
-            data: $scope.filiere
+            method: 'DELETE',
+            url: 'deleteFiliere?id=' + id,
+
         }).then(function (success) {
             refrech();
         }, function (error) {
 
         });
-
     }
 
-    $scope.edit = function (id) {
+    $scope.get = function (id) {
         $http({
             method: 'GET',
-            url: 'editFiliere?id='+id
-        }).then(function (success) {
-            $scope.filiere = success.data;
+            url: 'editFiliere?id=' + id
+        }).then(function (response) {
+            $scope.filiere=response.data;
         }, function (error) {
-
         });
-    }
+
+    };
+
 
     $scope.deselect = function() {
         $scope.filiere = "";

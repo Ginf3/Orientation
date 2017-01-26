@@ -25,7 +25,9 @@
         <datasource-map>
           <unit-entry name="hibernate.cfg.xml" value="998ac5ec-b984-4b57-8c70-a3b29f973d99" />
         </datasource-map>
-        <naming-strategy-map />
+        <naming-strategy-map>
+          <unit-entry name="hibernate.cfg.xml" />
+        </naming-strategy-map>
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/hibernate.cfg.xml" />
       </configuration>
     </facet>
@@ -41,5 +43,6 @@
     <orderEntry type="library" name="Hibernate 5.2.3-5.2.3" level="project" />
     <orderEntry type="library" name="mysql:mysql-connector-mxj:5.0.12" level="project" />
     <orderEntry type="library" name="org.apache.tomcat:tomcat-servlet-api:7.0.22" level="project" />
+    <orderEntry type="library" name="com.google.code.gson:gson:2.8.0" level="project" />
   </component>
 </module>
