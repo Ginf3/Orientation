@@ -15,7 +15,7 @@ import org.hibernate.metadata.ClassMetadata;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by ismailrei on 1/23/17.
@@ -48,20 +48,28 @@ public class Main {
 //        a.setNom("dcdc");
 //        a.setNote(15);
 //        a.setPrenom("sdsd");
-        PostDAO dao = new PostDAO();
-        Post p = new Post();
-//        p.setTitle("hello");
-//        p.setPicture("pic.jpg");
-//        p.setContent("fill me");
+//        PostDAO dao = new PostDAO();
+//        Post p = new Post();
+////        p.setTitle("hello");
+////        p.setPicture("pic.jpg");
+////        p.setContent("fill me");
+//////        dao.save(p);
+//        p = dao.getPost(1);
+////        p.setTitle("hello cp2");
 ////        dao.save(p);
-        p = dao.getPost(1);
-//        p.setTitle("hello cp2");
-//        dao.save(p);
-        dao.delete( 1 );
+//        dao.delete( 1 );
 
 
-        System.out.println("querying all the managed entities...");
-
-
+        ArrayList<String> array = new ArrayList<>();
+        array.add("helo");
+        array.add("hello");
+        array.add("hii");
+       for( String a : array ){
+           if( a.equals( "hello")){
+               System.out.println(1);
+           }
+           System.out.println(a);
+       }
     }
+
 }
