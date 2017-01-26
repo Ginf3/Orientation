@@ -1,6 +1,8 @@
 package Actions;
 
+import DAO.FiliereDAO;
 import DAO.PostDAO;
+import Entities.Filiere;
 import Entities.Post;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -18,6 +20,24 @@ public class ActionPost extends ActionSupport implements ModelDriven<Post> {
     private Post post= new Post();
     private PostDAO postDao=new PostDAO();
     private List<Post> Listpost= new ArrayList<>();
+    private FiliereDAO FlrDao = new FiliereDAO();
+    private List<Filiere> ListFlr=new ArrayList<>();
+
+    public FiliereDAO getFlrDao() {
+        return FlrDao;
+    }
+
+    public void setFlrDao(FiliereDAO flrDao) {
+        FlrDao = flrDao;
+    }
+
+    public List<Filiere> getListFlr() {
+        return ListFlr;
+    }
+
+    public void setListFlr(List<Filiere> listFlr) {
+        ListFlr = listFlr;
+    }
 
     public Post getPost() {
         return post;
@@ -48,12 +68,14 @@ public class ActionPost extends ActionSupport implements ModelDriven<Post> {
     }
 
     public String edit(){
+        ListFlr=FlrDao.listAll();
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         post=postDao.getPost(Integer.parseInt(request.getParameter("id")));
         return "success";
     }
 
     public String list(){
+        ListFlr=FlrDao.listAll();
         Listpost=postDao.listAll();
         return "success";
     }
