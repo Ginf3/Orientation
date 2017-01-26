@@ -29,6 +29,7 @@
     <tbody>
     <s:iterator value="Listuser" status="userStatus">
     <tr>
+
         <td><s:property value="user.login"/></td>
         <td><s:property value="user.password"/></td>
         <td><s:property value="user.email"/></td>

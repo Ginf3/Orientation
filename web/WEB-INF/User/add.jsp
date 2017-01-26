@@ -18,6 +18,7 @@
 <s:actionerror/>
 <s:form action="addU" method="post">
 
+
     <s:textfield name="user.admin" label="Admin"/>
     <s:textfield name="user.email" label="Email"/>
     <s:textfield name="user.login" label="LOGIN"/>

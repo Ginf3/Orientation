@@ -46,6 +46,7 @@ public class ActionEtudiant extends ActionSupport implements ModelDriven<Etudian
         return "success";
     }
 
+
     public String edit(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         Etd=EtdDao.getEtudiant(request.getParameter("id"));

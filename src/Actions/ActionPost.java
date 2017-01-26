@@ -19,6 +19,7 @@ public class ActionPost extends ActionSupport implements ModelDriven<Post> {
     private PostDAO postDao=new PostDAO();
     private List<Post> Listpost= new ArrayList<>();
 
+
     public Post getPost() {
         return post;
     }

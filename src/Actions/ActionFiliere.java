@@ -20,6 +20,7 @@ public class ActionFiliere extends ActionSupport implements ModelDriven<Filiere>
     private FiliereDAO FlrDao= new FiliereDAO();
     private List<Filiere> ListFlr= new ArrayList<>();
 
+
     public Filiere getFlr() {
         return Flr;
     }

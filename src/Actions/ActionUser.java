@@ -44,6 +44,7 @@ public class ActionUser extends ActionSupport implements ModelDriven<User> {
     }
 
     public String add(){
+
         userDao.save(user);
         return "success";
     }
