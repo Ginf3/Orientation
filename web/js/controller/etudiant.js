@@ -1,7 +1,7 @@
 /**
  * Created by ismailrei on 1/24/17.
  */
-var appEtudiant = angular.module('appEtudiant', []);
+var appEtudiant = angular.module('appEtudiant', ['ngJsonExportExcel']);
 
 appEtudiant.controller('etudiantController', ['$scope', '$http', function ($scope, $http) {
 
