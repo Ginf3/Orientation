@@ -2,12 +2,16 @@ package Actions;
 
 import DAO.UserDAO;
 import Entities.User;
-import com.opensymphony.xwork2.ActionContext;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +22,18 @@ public class ActionUser extends ActionSupport implements ModelDriven<User> {
     private User user= new User();
     private UserDAO userDao= new UserDAO();
     private List<User> Listuser= new ArrayList<>();
+
+    private InputStream inputStream;
+    HttpServletRequest request = ServletActionContext.getRequest();
+
+    public InputStream getInputStream() {
+        return inputStream;
+    }
+
+    public void setInputStream(InputStream inputStream) {
+        this.inputStream = inputStream;
+    }
+
     public User getUser() {
         return user;
     }
@@ -43,26 +59,35 @@ public class ActionUser extends ActionSupport implements ModelDriven<User> {
     }
 
     public String add(){
-
+        Gson gson = new Gson();
+        user = gson.fromJson(request.getParameter("newU"), User.class);
         userDao.save(user);
         return "success";
     }
 
     public String edit(){
-        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
-        user=userDao.getUser(request.getParameter("id"));
-        return "success";
+        user=userDao.getUser(Integer.parseInt(request.getParameter("id")));
+        Gson gson = new GsonBuilder()
+                .excludeFieldsWithModifiers(Modifier.FINAL, Modifier.TRANSIENT, Modifier.STATIC)
+                .serializeNulls()
+                .create();
+
+        String json = gson.toJson(user);
+
+        inputStream = new ByteArrayInputStream(json.getBytes());
+        return SUCCESS;
     }
 
     public String list(){
         Listuser=userDao.listAll();
-        return "success";
+        String json = new Gson().toJson(Listuser);
+        inputStream = new ByteArrayInputStream(json.getBytes());
+        return SUCCESS;
     }
 
     public String delete(){
-        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
-        userDao.delete(request.getParameter("id"));
-        return "success";
+        userDao.delete(Integer.parseInt(request.getParameter("id")));
+        return SUCCESS;
     }
     @Override
     public User getModel() {

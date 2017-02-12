@@ -66,7 +66,6 @@ public class ActionFiliere extends ActionSupport implements ModelDriven<Filiere>
 
     public String edit() {
         Flr = FlrDao.getFiliere(request.getParameter("id"));
-        Flr.setId(request.getParameter("id"));
 
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithModifiers(Modifier.FINAL, Modifier.TRANSIENT, Modifier.STATIC)
@@ -87,7 +86,6 @@ public class ActionFiliere extends ActionSupport implements ModelDriven<Filiere>
     }
 
     public String delete() {
-        System.out.print(request.getParameter("id"));
         FlrDao.delete(request.getParameter("id"));
         return SUCCESS;
     }
