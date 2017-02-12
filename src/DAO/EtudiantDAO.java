@@ -107,7 +107,6 @@ public class EtudiantDAO {
 
                 /* The chosen 'filiere' is not full yet. */
                 if( effectif.get( choice ) < filiereDAO.getFiliere( choice ).getEffictif()) {
-                    System.out.println("fuck filiere inc"+ effectif.get( choice) +"fuck filiere effictif"+filiereDAO.getFiliere( choice ).getEffictif() );
                     /* A hardWorker give him/her what he/she desires ;) */
                     E.setAffected( filiereDAO.getFiliere( choice ));
                     this.save( E );
