@@ -3,7 +3,7 @@
  */
 var appUser = angular.module('appUser', []);
 
-appUser.controller('userController', ['$scope', '$http', function ($scope, $http) {
+appUser.controller('UserController', ['$scope', '$http', function ($scope, $http) {
 
     var refrech = function () {
         $http({
@@ -15,14 +15,23 @@ appUser.controller('userController', ['$scope', '$http', function ($scope, $http
 
         });
     };
-
+    $scope.getDataFromServer=refrech();
     refrech();
 
-    $scope.addUser = function () {
+    $scope.addorUpdateUser = function () {
+        var params = {
+            "id": $scope.user.id,
+            "login": $scope.user.login,
+            "email":$scope.user.email,
+            "admin":$scope.user.admin,
+            "password":$scope.user.password
+        };
+        var data = angular.toJson(params);
         $http({
-            method: 'User',
+            method: 'POST',
             url: 'addOrUpdateUser',
-            data: $scope.user
+            data: "newU=" + data,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function (success) {
             refrech();
         }, function (error) {
@@ -31,34 +40,28 @@ appUser.controller('userController', ['$scope', '$http', function ($scope, $http
     }
 
     $scope.deleteUser = function (id) {
-        $http.delete('deleteUser?id=' + id).success(function (response) {
-            refrech();
-        })
-    }
-
-    $scope.update = function () {
         $http({
-            method: 'PUT',
-            url: 'addOrUpdateUser',
-            data: $scope.user
+            method: 'DELETE',
+            url: 'deleteUser?id=' + id,
+
         }).then(function (success) {
             refrech();
         }, function (error) {
 
         });
-
     }
 
-    $scope.edit = function (id) {
+    $scope.get = function (id) {
         $http({
             method: 'GET',
-            url: 'editUser?id='+id
-        }).then(function (success) {
-            $scope.user = success.data;
+            url: 'editUser?id=' + id
+        }).then(function (response) {
+            $scope.user=response.data;
         }, function (error) {
-
         });
-    }
+
+    };
+
 
     $scope.deselect = function() {
         $scope.user = "";
