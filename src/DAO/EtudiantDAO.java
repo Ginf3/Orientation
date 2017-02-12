@@ -56,19 +56,19 @@ public class EtudiantDAO {
         for( Etudiant E : liste ){
             oldEtudiant = this.getEtudiant( E.getCne() );
             oldEtudiant.setNote( E.getNote());
-            this.save( E );
+            this.save( oldEtudiant );
         }
     }
 
     /* Returns a list of students sorted by note */
-    private List<Etudiant> listByNote() {
+    public List<Etudiant> listByNote() {
         String hql = "FROM Etudiant E  ORDER BY E.note DESC";
         Query query = session.createQuery(hql);
         List results = query.list();
         return  results;
     }
 
-    private void adjustOrder() {
+    public void adjustOrder() {
         int ranking = 1;
         for( Etudiant E : listByNote()) {
             E.setClassement( ranking );
@@ -106,14 +106,15 @@ public class EtudiantDAO {
             for( String choice : choix ) {
 
                 /* The chosen 'filiere' is not full yet. */
-                if( effectif.get( choice ) <= filiereDAO.getFiliere( choice ).getEffictif()) {
-
+                if( effectif.get( choice ) < filiereDAO.getFiliere( choice ).getEffictif()) {
+                    System.out.println("fuck filiere inc"+ effectif.get( choice) +"fuck filiere effictif"+filiereDAO.getFiliere( choice ).getEffictif() );
                     /* A hardWorker give him/her what he/she desires ;) */
                     E.setAffected( filiereDAO.getFiliere( choice ));
                     this.save( E );
 
                     /* Increment the 'effectif' for the current 'filiere'. */
                     effectif.put( choice, effectif.get( choice) + 1 );
+
 
                     /* We should break this loop and prevent it from changing the 'affected', since the choice is made. */
                     break;
