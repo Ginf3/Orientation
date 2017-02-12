@@ -12,7 +12,8 @@ public class User {
     private String login;
     private String password;
     private String email;
-    private byte admin;
+    private boolean admin;
+
 
     @Id
     @Column(name = "id")
@@ -56,11 +57,11 @@ public class User {
 
     @Basic
     @Column(name = "admin")
-    public byte getAdmin() {
+    public boolean getAdmin() {
         return admin;
     }
 
-    public void setAdmin(byte admin) {
+    public void setAdmin(boolean admin) {
         this.admin = admin;
     }
 
@@ -86,7 +87,6 @@ public class User {
         result = 31 * result + (login != null ? login.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (int) admin;
         return result;
     }
 }

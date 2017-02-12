@@ -11,11 +11,11 @@ public class Etudiant {
     private String cne;
     private String nom;
     private String prenom;
-    private int note;
-    private int classement;
-    private String choix;
+    private int note = 0;
+    private int classement = 0;
+    private String choix = "";
     private Filiere affected;
-    private User user;
+    private User oneToOne;
 
     @Id
     @Column(name = "cne")
@@ -54,6 +54,7 @@ public class Etudiant {
     }
 
     public void setNote(int note) {
+
         this.note = note;
     }
 
@@ -106,7 +107,7 @@ public class Etudiant {
     }
 
     @ManyToOne
-    @JoinColumn(name = "affected", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "affected", referencedColumnName = "id")
     public Filiere getAffected() {
         return affected;
     }
@@ -115,14 +116,13 @@ public class Etudiant {
         this.affected = affected;
     }
 
-
-
     @OneToOne
-    public User getUser() {
-        return user;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    public User getOneToOne() {
+        return oneToOne;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setOneToOne(User oneToOne) {
+        this.oneToOne = oneToOne;
     }
 }
