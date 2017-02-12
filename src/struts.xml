@@ -21,20 +21,50 @@
             <result name="success" type="redirect">listEtd.action</result>
         </action>
 
-        <action name="addU" class="Actions.ActionUser" method="add">
-            <result name="success" type="redirect">listuser.action</result>
+        <action name="addOrUpdateUser" class="Actions.ActionUser" method="add">
+            <result name="input" type="redirect"></result>
+            <result name="success" type="redirect">listFiliere.action</result>
         </action>
-        <action name="listuser" class="Actions.ActionUser" method="list">
-            <result name="success">WEB-INF/User/index.jsp</result>
+        <action name="listUser" class="Actions.ActionUser" method="list">
+            <result name="success" type="stream">
+                <param name="contentType">application/json</param>
+                <param name="inputName">inputStream</param>
+            </result>
         </action>
-        <action name="GetAdduser" class="Actions.ActionUser" method="list">
-            <result name="success">WEB-INF/User/add.jsp</result>
+        <action name="GetAddUser" class="Actions.ActionUser" method="list">
+            <result name="success"></result>
         </action>
-        <action name="edituser" class="Actions.ActionUser" method="edit">
-            <result name="success">WEB-INF/User/add.jsp</result>
+        <action name="editUser" class="Actions.ActionUser" method="edit">
+            <result name="success" type="stream">
+                <param name="contentType">application/json</param>
+                <param name="inputName">inputStream</param>
+            </result>
         </action>
-        <action name="Deleteuser" class="Actions.ActionUser" method="delete">
-            <result name="success" type="redirect">listEtd.action</result>
+        <action name="deleteUser" class="Actions.ActionUser" method="delete">
+            <result name="success" type="redirect">listUser.action</result>
+        </action>
+
+        <action name="addOrUpdatePost" class="Actions.ActionPost" method="add">
+            <result name="input" type="redirect"></result>
+            <result name="success" type="redirect">listPost.action</result>
+        </action>
+        <action name="listPost" class="Actions.ActionPost" method="list">
+            <result name="success" type="stream">
+                <param name="contentType">application/json</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="GetAddPost" class="Actions.ActionPost" method="list">
+            <result name="success"></result>
+        </action>
+        <action name="editPost" class="Actions.ActionPost" method="edit">
+            <result name="success" type="stream">
+                <param name="contentType">application/json</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="deletePost" class="Actions.ActionPost" method="delete">
+            <result name="success" type="redirect">listPost.action</result>
         </action>
 
         <action name="addOrUpdateFiliere" class="Actions.ActionFiliere" method="add">
