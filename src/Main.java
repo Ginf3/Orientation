@@ -1,15 +1,4 @@
-import DAO.*;
-import Entities.*;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.metadata.ClassMetadata;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-
-import java.util.*;
+import DAO.Email;
 
 /**
  * Created by ismailrei on 1/23/17.
@@ -20,6 +9,16 @@ public class Main {
     public static void main(final String[] args) throws Exception {
 
      System.out.println("querying all the managed entities...");
+        Email email = new Email();
+        email.setFrom("oriented.ensat@gmail.com");
+        email.setPassword("Ensat@01/01/1998");
+        email.setSubject("testing java mail api");
+        email.setBody("hello spamy");
+        email.setTo("tarikchakurspam@gmail.com");
+        email.sendMail();
+
+        System.out.println("all is velll");
+
 //        Etudiant e = new Etudiant();
 //        EtudiantDAO dao = new EtudiantDAO();
 //        UserDAO dao2 = new UserDAO();
@@ -47,11 +46,11 @@ public class Main {
 //        liste.add(e2);
 //
 //        dao.importNote(liste);
-        EtudiantDAO dao = new EtudiantDAO();
-        dao.adjustOrder();
-        dao.processAffected();
-        for( Etudiant E : dao.listByNote())
-            System.out.println( E.getClassement()+ " -- " + E.getNote() +" -- " + E.getAffected().getId());
+//        EtudiantDAO dao = new EtudiantDAO();
+//        dao.adjustOrder();
+//        dao.processAffected();
+//        for( Etudiant E : dao.listByNote())
+//            System.out.println( E.getClassement()+ " -- " + E.getNote() +" -- " + E.getAffected().getId());
 
 //        Filiere f = new Filiere();
 //        f.setId("GINF1");
