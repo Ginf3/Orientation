@@ -4,90 +4,134 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
+
     <package name="default" extends="struts-default">
-        <action name="addE" class="Actions.ActionEtudiant" method="add">
-            <result name="success" type="redirect">listEtd.action</result>
-        </action>
-        <action name="listEtd" class="Actions.ActionEtudiant" method="list">
-            <result name="success"></result>
-        </action>
-        <action name="GetAddEtd" class="Actions.ActionEtudiant" method="list">
-            <result name="success"></result>
-        </action>
-        <action name="editEtd" class="Actions.ActionEtudiant" method="edit">
-            <result name="success"></result>
-        </action>
-        <action name="DeleteEtd" class="Actions.ActionEtudiant" method="delete">
-            <result name="success" type="redirect">listEtd.action</result>
+
+                    <!--Actions Etudiant -->
+        <action name="addOrUpdateEtudiant" class="Actions.ActionEtudiant" method="add">
+            <result name="success" type="redirect">listEtudiants.action</result>
         </action>
 
+        <action name="listEtudiants" class="Actions.ActionEtudiant" method="list">
+            <result name="success" type="stream">
+                <param name="contentType">application/json</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+
+        <action name="listEtudiantByNote" class="Actions.ActionEtudiant" method="sortedList">
+            <result name="success" type="stream">
+                <param name="contentType">application/json</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+
+        <action name="affect" class="Actions.ActionEtudiant" method="affect">
+            <result name="success" type="stream">
+                <param name="contentType">application/json</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+
+        <action name="editEtudiant" class="Actions.ActionEtudiant" method="edit">
+            <result name="success" type="stream">
+                <param name="contentType">application/json</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+
+        <action name="DeleteEtudiant" class="Actions.ActionEtudiant" method="delete">
+            <result name="success" type="redirect">listEtudiants.action</result>
+        </action>
+
+        <action name="uploadEtudiants" class="Actions.ActionEtudiant" method="uploadEtudiants">
+            <result name="success" type="redirect">listEtudiants.action</result>
+        </action>
+
+        <action name="redirectToEtudiant">
+            <result name="success" >/Etudiant/index.jsp</result>
+        </action>
+
+                        <!--Actions User -->
         <action name="addOrUpdateUser" class="Actions.ActionUser" method="add">
-            <result name="input" type="redirect"></result>
+            <result name="input" type="redirect"/>
             <result name="success" type="redirect">listFiliere.action</result>
         </action>
+
         <action name="listUser" class="Actions.ActionUser" method="list">
             <result name="success" type="stream">
                 <param name="contentType">application/json</param>
                 <param name="inputName">inputStream</param>
             </result>
         </action>
-        <action name="GetAddUser" class="Actions.ActionUser" method="list">
-            <result name="success"></result>
-        </action>
+
         <action name="editUser" class="Actions.ActionUser" method="edit">
             <result name="success" type="stream">
                 <param name="contentType">application/json</param>
                 <param name="inputName">inputStream</param>
             </result>
         </action>
+
         <action name="deleteUser" class="Actions.ActionUser" method="delete">
             <result name="success" type="redirect">listUser.action</result>
         </action>
 
+        <action name="redirectToUser">
+            <result name="success" >/User/index.jsp</result>
+        </action>
+                        <!--Actions Post -->
         <action name="addOrUpdatePost" class="Actions.ActionPost" method="add">
-            <result name="input" type="redirect"></result>
+            <result name="input" type="redirect"/>
             <result name="success" type="redirect">listPost.action</result>
         </action>
+
         <action name="listPost" class="Actions.ActionPost" method="list">
             <result name="success" type="stream">
                 <param name="contentType">application/json</param>
                 <param name="inputName">inputStream</param>
             </result>
         </action>
-        <action name="GetAddPost" class="Actions.ActionPost" method="list">
-            <result name="success"></result>
-        </action>
+
         <action name="editPost" class="Actions.ActionPost" method="edit">
             <result name="success" type="stream">
                 <param name="contentType">application/json</param>
                 <param name="inputName">inputStream</param>
             </result>
         </action>
+
         <action name="deletePost" class="Actions.ActionPost" method="delete">
             <result name="success" type="redirect">listPost.action</result>
         </action>
 
+        <action name="redirectToPost">
+            <result name="success" >/Post/index.jsp</result>
+        </action>
+
+                        <!--Actions Filiere -->
         <action name="addOrUpdateFiliere" class="Actions.ActionFiliere" method="add">
-            <result name="input" type="redirect"></result>
+            <result name="input" type="redirect"/>
             <result name="success" type="redirect">listFiliere.action</result>
         </action>
+
         <action name="listFiliere" class="Actions.ActionFiliere" method="list">
             <result name="success" type="stream">
                 <param name="contentType">application/json</param>
                 <param name="inputName">inputStream</param>
             </result>
         </action>
-        <action name="GetAddFiliere" class="Actions.ActionFiliere" method="list">
-            <result name="success"></result>
-        </action>
+
         <action name="editFiliere" class="Actions.ActionFiliere" method="edit">
             <result name="success" type="stream">
                 <param name="contentType">application/json</param>
                 <param name="inputName">inputStream</param>
             </result>
         </action>
+
         <action name="deleteFiliere" class="Actions.ActionFiliere" method="delete">
             <result name="success" type="redirect">listFiliere.action</result>
+        </action>
+        <action name="redirectToFiliere">
+            <result name="success" >/Filiere/index.jsp</result>
         </action>
     </package>
 </struts>
