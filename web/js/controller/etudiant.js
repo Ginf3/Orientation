@@ -1,10 +1,11 @@
 /**
  * Created by ismailrei on 1/24/17.
  */
-var appEtudiant = angular.module('appEtudiant', ['ngJsonExportExcel']);
+var appEtudiant = angular.module('appEtudiant', []);
 
 appEtudiant.controller('etudiantController', ['$scope', '$http', function ($scope, $http) {
-
+    $scope.json=null;
+    $scope.etudiants={};
     var refrech = function () {
         $http({
             method: 'GET',
@@ -17,12 +18,28 @@ appEtudiant.controller('etudiantController', ['$scope', '$http', function ($scop
     };
 
     refrech();
+    $scope.addCsv=function(){
+        var id=0;
+        $scope.json=JSON.parse($scope.json);
+        angular.forEach($scope.json,function(value,key){
+           if(value.id)
+           {
+               $scope.etudiant=value;
+               $scope.etudiants[key]=value;
+               $scope.addorUpdateEtudiant;
+           }
 
-    $scope.addEtudiant = function () {
+
+
+
+        })
+
+    }
+    $scope.addorUpdateEtudiant = function () {
         $http({
             method: 'POST',
             url: 'addOrUpdateEtudiant',
-            data: $scope.etudiant
+            data: "newEtudiant="+$scope.etudiant
         }).then(function (success) {
             refrech();
         }, function (error) {
@@ -31,23 +48,17 @@ appEtudiant.controller('etudiantController', ['$scope', '$http', function ($scop
     }
 
     $scope.deleteEtudiant = function (id) {
-        $http.delete('deleteEtudiant?id=' + id).success(function (response) {
-            refrech();
-        })
-    }
-
-    $scope.update = function () {
         $http({
-            method: 'PUT',
-            url: 'addOrUpdateEtudiant',
-            data: $scope.etudiant
+            method: 'DELETE',
+            url: 'deleteEtudiant?id=' + id,
+
         }).then(function (success) {
             refrech();
         }, function (error) {
 
         });
-
     }
+
 
     $scope.edit = function (id) {
         $http({
