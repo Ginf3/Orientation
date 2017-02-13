@@ -40,13 +40,13 @@
             </result>
         </action>
 
-        <action name="DeleteEtudiant" class="Actions.ActionEtudiant" method="delete">
+        <action name="deleteEtudiant" class="Actions.ActionEtudiant" method="delete">
             <result name="success" type="redirect">listEtudiants.action</result>
         </action>
 
-        <action name="uploadEtudiants" class="Actions.ActionEtudiant" method="uploadEtudiants">
-            <result name="success" type="redirect">listEtudiants.action</result>
-        </action>
+        <!--<action name="uploadEtudiants" class="Actions.ActionEtudiant" method="uploadEtudiants">-->
+            <!--<result name="success" type="redirect">listEtudiants.action</result>-->
+        <!--</action>-->
 
         <action name="redirectToEtudiant">
             <result name="success" >/Etudiant/index.jsp</result>
