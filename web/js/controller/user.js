@@ -4,7 +4,7 @@
 var appUser = angular.module('appUser', []);
 
 appUser.controller('UserController', ['$scope', '$http', function ($scope, $http) {
-
+    $scope.update = false;
     var refrech = function () {
         $http({
             method: 'GET',
@@ -33,6 +33,7 @@ appUser.controller('UserController', ['$scope', '$http', function ($scope, $http
             data: "newU=" + data,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function (success) {
+            $scope.update = false;
             refrech();
         }, function (error) {
 
@@ -52,6 +53,7 @@ appUser.controller('UserController', ['$scope', '$http', function ($scope, $http
     }
 
     $scope.get = function (id) {
+        $scope.update = true;
         $http({
             method: 'GET',
             url: 'editUser?id=' + id
@@ -65,6 +67,7 @@ appUser.controller('UserController', ['$scope', '$http', function ($scope, $http
 
     $scope.deselect = function() {
         $scope.user = "";
+        $scope.update = false;
     }
 
 }]);

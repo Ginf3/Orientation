@@ -4,7 +4,7 @@
 var appFiliere = angular.module('appFiliere', []);
 
 appFiliere.controller('filiereController', ['$scope', '$http', function ($scope, $http) {
-
+    $scope.update = false;
     var refrech = function () {
         $http({
             method: 'GET',
@@ -31,6 +31,7 @@ appFiliere.controller('filiereController', ['$scope', '$http', function ($scope,
             data: "newF=" + data,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function (success) {
+            $scope.update = false;
             refrech();
         }, function (error) {
 
@@ -50,11 +51,13 @@ appFiliere.controller('filiereController', ['$scope', '$http', function ($scope,
     }
 
     $scope.get = function (id) {
+        $scope.update = true;
         $http({
             method: 'GET',
             url: 'editFiliere?id=' + id
         }).then(function (response) {
             $scope.filiere=response.data;
+
         }, function (error) {
         });
 
@@ -63,6 +66,7 @@ appFiliere.controller('filiereController', ['$scope', '$http', function ($scope,
 
     $scope.deselect = function() {
         $scope.filiere = "";
+        $scope.update = false;
     }
 
 }]);
