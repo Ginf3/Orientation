@@ -6,10 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.util.*;
 
 /**
  * Created by tarik on 1/24/2017.
@@ -87,7 +84,10 @@ public class EtudiantDAO {
         return  tokens;
     }
 
-    public void processAffected( ){
+    public void processAffected( ) {
+        /* Get the Promo */
+        Calendar now = Calendar.getInstance();
+        int year = now.get(Calendar.YEAR);
 
         /* Initializing 'effectif' count. */
         FiliereDAO filiereDAO = new FiliereDAO();
@@ -99,6 +99,9 @@ public class EtudiantDAO {
         List< Etudiant > Etudiants = this.listByNote();
 
         for( Etudiant E : Etudiants ) {
+
+            /* Set the Promo */
+            E.setAnnee(""+year);
 
             /* Transforming 'choix' from a tokenized String into an Array of String. */
             ArrayList< String > choix = this.tokens( E.getChoix());
@@ -124,4 +127,10 @@ public class EtudiantDAO {
             }
         }
     }
+    public void deleteAll(  ) {
+
+        for( Etudiant E : this.listAll())
+            this.delete( E.getCne() );
+    }
+
 }

@@ -58,11 +58,6 @@ public class ActionArchive extends ActionSupport implements ModelDriven<Archive>
         return "success";
     }
 
-    public String delete(){
-        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
-        ArchDao.delete(request.getParameter("id"));
-        return "success";
-    }
     @Override
     public Archive getModel() {
         return Arch;

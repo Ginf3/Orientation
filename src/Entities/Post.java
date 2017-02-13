@@ -14,8 +14,6 @@ public class Post {
     private String picture;
     private Filiere filiere;
 
-
-
     @Id
     @Column(name = "id")
     public int getId() {

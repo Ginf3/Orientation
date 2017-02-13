@@ -11,6 +11,8 @@ public class Etudiant {
     private String cne;
     private String nom;
     private String prenom;
+    private String annee;
+    private String email;
     private int note = 0;
     private int classement = 0;
     private String choix = "";
@@ -35,6 +37,26 @@ public class Etudiant {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    @Basic
+    @Column(name = "year")
+    public String getAnnee() {
+        return annee;
+    }
+
+    public void setAnnee(String annee) {
+        this.annee = annee;
+    }
+
+    @Basic
+    @Column(name = "email")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Basic
