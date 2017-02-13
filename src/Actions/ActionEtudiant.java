@@ -1,13 +1,14 @@
 package Actions;
 
 import DAO.EtudiantDAO;
+import DAO.UserDAO;
 import Entities.Etudiant;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import org.apache.struts2.ServletActionContext;
+
 import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -20,6 +21,7 @@ import java.util.List;
  */
 public class ActionEtudiant extends ActionSupport implements ModelDriven<Etudiant> {
     private Etudiant etudiant = new Etudiant();
+    private UserDAO daoUser=new UserDAO();
     private EtudiantDAO dao = new EtudiantDAO();
     private List<Etudiant> listeEtudiants = new ArrayList<>();
     private InputStream inputStream;
@@ -60,7 +62,9 @@ public class ActionEtudiant extends ActionSupport implements ModelDriven<Etudian
     public String add() {
         Gson gson = new Gson();
         etudiant = gson.fromJson(request.getParameter("newEtudiant"), Etudiant.class);
-        dao.save(etudiant);
+        if(etudiant.getNote()==0)
+        dao.importSansNote(etudiant);
+        else dao.save(etudiant);
         return SUCCESS;
     }
 
@@ -91,7 +95,6 @@ public class ActionEtudiant extends ActionSupport implements ModelDriven<Etudian
     }
 
     public String affect() {
-
         dao.processAffected();
         listeEtudiants = dao.listByNote();
         String json = new Gson().toJson(listeEtudiants);
