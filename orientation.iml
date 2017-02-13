@@ -44,5 +44,15 @@
     <orderEntry type="library" name="mysql:mysql-connector-mxj:5.0.12" level="project" />
     <orderEntry type="library" name="org.apache.tomcat:tomcat-servlet-api:7.0.22" level="project" />
     <orderEntry type="library" name="com.google.code.gson:gson:2.8.0" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/mail-1.4.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="mail" level="project" />
   </component>
 </module>

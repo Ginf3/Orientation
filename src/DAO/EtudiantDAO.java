@@ -2,10 +2,10 @@ package DAO;
 
 import Entities.Etudiant;
 import Entities.Filiere;
+import Entities.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
 import java.util.*;
 
 /**
@@ -14,6 +14,7 @@ import java.util.*;
 public class EtudiantDAO {
     private Session session;
     private Transaction transaction;
+
 
     public EtudiantDAO() {
         this.session = HibernateUtil.getSession();
@@ -44,8 +45,31 @@ public class EtudiantDAO {
     }
 
     public void importSansNote( List<Etudiant> liste ) {
-        for( Etudiant E : liste )
+        Email email = new Email();
+        UserDAO userDao = new UserDAO();
+        User u = new User();
+
+        for( Etudiant E : liste ) {
+
+            /* Creating an acount for student. */
+            u.setAdmin( false );
+            u.setPassword(E.getCne());
+            u.setEmail( E.getEmail());
+            u.setLogin( E.getEmail());
+            userDao.save( u );
+
+            /* Save Student. */
             this.save( E );
+
+            /* Send him his Credentials. */
+            email.setFrom( "oriented.ensat@gmail.com" );
+            email.setPassword( "Ensat@01/01/1998" );
+            email.setSubject( "Données de connexion" );
+            email.setBody( "login: "+E.getOneToOne().getLogin() + "<br/> Mot de passe" +E.getOneToOne().getPassword() );
+            email.setTo( E.getEmail());
+            email.sendMail();
+        }
+
     }
 
     public void importNote( List<Etudiant> liste ) {
