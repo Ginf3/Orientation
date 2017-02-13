@@ -3,7 +3,6 @@ package DAO;
 import Entities.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -34,7 +33,12 @@ public class UserDAO {
     }
 
     public User getByLogin( String login ) {
-        return ( User ) this.session.createQuery( "From User u Where u.login = :login ").setParameter("login", login).getSingleResult();
+        try{
+            return ( User ) this.session.createQuery( "From User u Where u.login = :login ").setParameter("login", login).getSingleResult();
+
+        }catch (Exception e){
+            return null;
+        }
     }
 
     public void delete( int id ) {
