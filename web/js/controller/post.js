@@ -4,14 +4,15 @@
 var appPost = angular.module('appPost', []);
 
 appPost.controller('PostController', ['$scope', '$http', function ($scope, $http) {
-
+    $scope.update = false;
     var refrech = function () {
+
         $http({
             method: 'GET',
             url: 'listPost'
         }).then(function (success) {
-            $scope.posts = success.data.posts;
-            $scope.filieres = success.data.filieres;
+            $scope.posts = success.data[0];
+            $scope.filieres = success.data[1];
         }, function (error) {
 
         });
@@ -20,12 +21,20 @@ appPost.controller('PostController', ['$scope', '$http', function ($scope, $http
     refrech();
 
     $scope.addorUpdatePost = function () {
+
+        angular.forEach($scope.filieres, function (value,key) {
+            if(value.id==$scope.filiere)
+            {
+                $scope.post.filiere=value;
+            }
+        });
+        console.log( $scope.post.filiere);
         var params = {
             "id": $scope.post.id,
             "title": $scope.post.title,
             "content":$scope.post.content,
             "picture":$scope.post.picture,
-            "filiere":$scope.filiere
+            "filiere":$scope.post.filiere
         };
         var data = angular.toJson(params);
         $http({
@@ -34,6 +43,7 @@ appPost.controller('PostController', ['$scope', '$http', function ($scope, $http
             data: "newP=" + data,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function (success) {
+            $scope.update = false;
             refrech();
         }, function (error) {
 
@@ -53,6 +63,7 @@ appPost.controller('PostController', ['$scope', '$http', function ($scope, $http
     }
 
     $scope.get = function (id) {
+        $scope.update = true;
         $http({
             method: 'GET',
             url: 'editPost?id=' + id
@@ -66,6 +77,7 @@ appPost.controller('PostController', ['$scope', '$http', function ($scope, $http
 
     $scope.deselect = function() {
         $scope.post = "";
+        $scope.update = false;
     }
 
 }]);
