@@ -16,6 +16,13 @@ public class Archive {
     private String affected;
     private String choix;
     private String annee;// add it to database
+
+    public Archive(){}
+
+    public Archive( String cne ){
+        this.cne = cne;
+    }
+
     @Id
     @Column(name = "cne")
     public String getCne() {
