@@ -9,37 +9,48 @@ appEtudiant.controller('etudiantController', ['$scope', '$http', function ($scop
     var refrech = function () {
         $http({
             method: 'GET',
-            url: 'listEtudiant'
+            url: 'listEtudiants'
         }).then(function (success) {
             $scope.etudiants = success.data;
         }, function (error) {
 
         });
     };
+    $scope.affecter=function(){
+        $scope.json=JSON.parse($scope.json);
+        var data = angular.toJson($scope.json);
+        $http({
+            method: 'POST',
+            url: 'addOrUpdateEtudiant',
+            data: "newEtudiant="+data,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).then(function (success) {
+            refrech();
+        }, function (error) {
 
+        });
+    }
     refrech();
     $scope.addCsv=function(){
         var id=0;
         $scope.json=JSON.parse($scope.json);
+        console.log("test3");
         angular.forEach($scope.json,function(value,key){
-           if(value.id)
+           if(value.cne)
            {
                $scope.etudiant=value;
-               $scope.etudiants[key]=value;
-               $scope.addorUpdateEtudiant;
+               $scope.addorUpdateEtudiant();
            }
-
-
-
-
         })
 
     }
     $scope.addorUpdateEtudiant = function () {
+        var data = angular.toJson($scope.etudiant);
         $http({
             method: 'POST',
             url: 'addOrUpdateEtudiant',
-            data: "newEtudiant="+$scope.etudiant
+            data: "newEtudiant="+data,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function (success) {
             refrech();
         }, function (error) {
