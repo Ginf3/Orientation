@@ -1,6 +1,7 @@
 package Entities;
 
 import javax.persistence.*;
+import java.time.Year;
 
 /**
  * Created by ismailrei on 1/23/17.
@@ -127,6 +128,7 @@ public class Etudiant {
         result = 31 * result + (choix != null ? choix.hashCode() : 0);
         return result;
     }
+
 
     @ManyToOne
     @JoinColumn(name = "affected", referencedColumnName = "id")
