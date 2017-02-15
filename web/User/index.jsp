@@ -21,7 +21,7 @@
                 <a href="/redirectToEtudiant.action" class="navbar-brand">Etudiant</a>
                 <a href="/redirectToUser.action" class="navbar-brand">User</a>
                 <a href="/redirectToPost.action" class="navbar-brand">Post</a>
-                <a href="" class="navbar-brand">Archive</a>
+                <a href="/redirectToArchive.action" class="navbar-brand">Archive</a>
             </div>
         </div>
         <div class="col-md-6">
