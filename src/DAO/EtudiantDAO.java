@@ -152,4 +152,8 @@ public class EtudiantDAO {
             this.delete(E.getCne());
     }
 
+    public List<Etudiant> getEtudiants(String filiere) {
+        return  this.session.createQuery( "from Etudiant E where E.affected.id = :filiere ").setParameter("filiere", filiere).getResultList();
+    }
+
 }

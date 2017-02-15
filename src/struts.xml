@@ -26,6 +26,13 @@
             </result>
         </action>
 
+        <action name="downloadList" class="Actions.ActionEtudiant" method="downloadList">
+            <result name="success" type="stream">
+                <param name="contentType">application/json</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+
         <action name="affect" class="Actions.ActionEtudiant" method="affect">
             <result name="success" type="stream">
                 <param name="contentType">application/json</param>
@@ -43,10 +50,6 @@
         <action name="deleteEtudiant" class="Actions.ActionEtudiant" method="delete">
             <result name="success" type="redirect">listEtudiants.action</result>
         </action>
-
-        <!--<action name="uploadEtudiants" class="Actions.ActionEtudiant" method="uploadEtudiants">-->
-            <!--<result name="success" type="redirect">listEtudiants.action</result>-->
-        <!--</action>-->
 
         <action name="redirectToEtudiant">
             <result name="success" >/Etudiant/index.jsp</result>
@@ -133,5 +136,20 @@
         <action name="redirectToFiliere">
             <result name="success" >/Filiere/index.jsp</result>
         </action>
+                        <!--Actions Archive -->
+        <action name="listArchive" class="Actions.ActionArchive" method="list">
+            <result name="success" type="stream">
+                <param name="contentType">application/json</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+
+        <action name="listPromo" class="Actions.ActionArchive" method="listPromo">
+            <result name="success" type="stream">
+                <param name="contentType">application/json</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+
     </package>
 </struts>

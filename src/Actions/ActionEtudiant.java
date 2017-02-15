@@ -62,9 +62,11 @@ public class ActionEtudiant extends ActionSupport implements ModelDriven<Etudian
     public String add() {
         Gson gson = new Gson();
         etudiant = gson.fromJson(request.getParameter("newEtudiant"), Etudiant.class);
-        if(etudiant.getNote()==0)
-        dao.importSansNote(etudiant);
-        else dao.save(etudiant);
+        if( etudiant.getNote() == 0 )
+            dao.importSansNote( etudiant );
+        else
+            dao.save( etudiant );
+        
         return SUCCESS;
     }
 
@@ -104,6 +106,14 @@ public class ActionEtudiant extends ActionSupport implements ModelDriven<Etudian
     public String sortedList() {
 
         listeEtudiants = dao.listByNote();
+        String json = new Gson().toJson(listeEtudiants);
+        inputStream = new ByteArrayInputStream(json.getBytes());
+        return SUCCESS;
+    }
+
+    public String downloadList() {
+
+        listeEtudiants = dao.getEtudiants(request.getParameter("filiere"));
         String json = new Gson().toJson(listeEtudiants);
         inputStream = new ByteArrayInputStream(json.getBytes());
         return SUCCESS;
